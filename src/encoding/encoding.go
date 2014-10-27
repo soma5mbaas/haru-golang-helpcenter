@@ -20,8 +20,18 @@ var rxExt = regexp.MustCompile(`(\.(?:xml|text|json))\/?$`)
 // the URL to remove the format extension, so that routes can be defined
 // without it.
 func MapEncoder(c martini.Context, w http.ResponseWriter, r *http.Request) {
+
+	reg, err := regexp.Compile("[^A-Za-z0-9]+")
+	if err != nil {
+		panic(err)
+	}
+	prettyurl := reg.ReplaceAllString(r.URL.Path, "-")
+
+	re := regexp.MustCompile(":([^/]*)")
+	prettyurl = re.ReplaceAllString(prettyurl, "{$1}")
+
 	// Get the format extension
-	matches := rxExt.FindStringSubmatch(r.URL.Path)
+	matches := rxExt.FindStringSubmatch(prettyurl)
 	ft := ".json"
 	if len(matches) > 1 {
 		// Rewrite the URL without the format extension

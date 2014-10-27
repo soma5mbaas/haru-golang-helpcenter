@@ -3,7 +3,6 @@ package controllers
 import (
 	"../handlers"
 	"code.google.com/p/go-uuid/uuid"
-	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
 	"gopkg.in/mgo.v2"
@@ -22,7 +21,6 @@ type Faq struct {
 }
 
 func CreateFaq(req *http.Request, params martini.Params, fa Faq, r render.Render, db *mgo.Database) {
-
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
 		r.JSON(http.StatusNotFound, "insert to Application-Id")
@@ -46,10 +44,8 @@ func ReadListCategoryFaq(req *http.Request, params martini.Params, r render.Rend
 
 	var faqs []Faq
 	rawId := params["id"]
-	fmt.Println(rawId)
 	CollectionName := handlers.CollectionNameFAQ(appid)
 	err := db.C(CollectionName).Find(bson.M{"category": rawId}).All(&faqs)
-
 	if err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
@@ -68,7 +64,6 @@ func ReadListFaq(req *http.Request, r render.Render, db *mgo.Database) {
 	var faqs []Faq
 	CollectionName := handlers.CollectionNameFAQ(appid)
 	err := db.C(CollectionName).Find(bson.M{}).All(&faqs)
-
 	if err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
@@ -89,7 +84,6 @@ func ReadIdFaq(req *http.Request, params martini.Params, r render.Render, db *mg
 	rawId := params["id"]
 	CollectionName := handlers.CollectionNameFAQ(appid)
 	err := db.C(CollectionName).Find(bson.M{"_id": rawId}).One(&fa)
-
 	if err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return

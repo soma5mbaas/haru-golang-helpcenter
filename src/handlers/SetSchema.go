@@ -11,3 +11,7 @@ func CollectionNameFAQCategory(appid string) string {
 func CollectionNameFAQ(appid string) string {
 	return fmt.Sprintf("faq:%s", appid)
 }
+
+func CollectionNameNotice(appid string) string {
+	return fmt.Sprintf("notice:%s", appid)
+}

@@ -1,0 +1,399 @@
+[martini]2014/10/28 00:26:14 listening on :3000 (production)
+[martini]2014/10/28 00:26:20 Started POST /notice/add for [::1]:65423
+[martini]2014/10/28 00:26:20 Completed 200 OK in 7.771032ms
+[martini]2014/10/28 00:26:20 Started POST /notice/add for [::1]:65423
+[martini]2014/10/28 00:26:20 Completed 200 OK in 149.351591ms
+[martini]2014/10/28 00:26:20 Started POST /notice/add for [::1]:65423
+[martini]2014/10/28 00:26:20 Completed 200 OK in 113.228335ms
+[martini]2014/10/28 00:26:21 Started POST /notice/add for [::1]:65423
+[martini]2014/10/28 00:26:21 Completed 200 OK in 109.371109ms
+[martini]2014/10/28 00:27:51 listening on :3000 (production)
+[martini]2014/10/28 00:28:07 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:49556
+[martini]2014/10/28 00:28:07 Completed 404 Not Found in 111.411189ms
+[martini]2014/10/28 00:28:07 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:49556
+[martini]2014/10/28 00:28:07 Completed 404 Not Found in 62.325417ms
+[martini]2014/10/28 00:28:07 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:49556
+[martini]2014/10/28 00:28:07 Completed 404 Not Found in 13.00091ms
+[martini]2014/10/28 00:28:10 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:10 Completed 200 OK in 8.621369ms
+[martini]2014/10/28 00:28:11 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:11 Completed 200 OK in 8.19373ms
+[martini]2014/10/28 00:28:11 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:11 Completed 200 OK in 12.431305ms
+[martini]2014/10/28 00:28:11 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:11 Completed 200 OK in 6.718ms
+[martini]2014/10/28 00:28:17 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:17 Completed 200 OK in 6.386705ms
+[martini]2014/10/28 00:28:17 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:17 Completed 200 OK in 8.659096ms
+[martini]2014/10/28 00:28:18 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:18 Completed 200 OK in 9.493833ms
+[martini]2014/10/28 00:28:18 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:18 Completed 200 OK in 5.750695ms
+[martini]2014/10/28 00:28:18 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:18 Completed 200 OK in 5.849707ms
+[martini]2014/10/28 00:28:18 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:18 Completed 200 OK in 5.712265ms
+[martini]2014/10/28 00:28:18 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:18 Completed 200 OK in 6.737723ms
+[martini]2014/10/28 00:28:19 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:19 Completed 200 OK in 7.088116ms
+[martini]2014/10/28 00:28:19 Started POST /notice/add for [::1]:49556
+[martini]2014/10/28 00:28:19 Completed 200 OK in 10.643835ms
+[martini]2014/10/28 00:28:38 Started GET /notice/list for [::1]:49556
+[martini]2014/10/28 00:28:38 Completed 200 OK in 7.1082ms
+[martini]2014/10/28 00:28:46 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:49556
+[martini]2014/10/28 00:28:46 Completed 404 Not Found in 120.388349ms
+[martini]2014/10/28 00:28:49 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:49556
+[martini]2014/10/28 00:28:49 Completed 404 Not Found in 5.392626ms
+[martini]2014/10/28 00:28:49 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:49556
+[martini]2014/10/28 00:28:49 Completed 404 Not Found in 6.581155ms
+[martini]2014/10/28 00:29:17 listening on :3000 (production)
+[martini]2014/10/28 00:40:05 listening on :3000 (production)
+[martini]2014/10/28 00:47:34 Started POST /faq/category/ for [::1]:51023
+[martini]2014/10/28 00:47:34 Completed 404 Not Found in 240.005us
+[martini]2014/10/28 00:48:08 Started POST /faq/category/add/ for [::1]:51023
+[martini]2014/10/28 00:48:08 PANIC: Value not found for type controllers.Notice
+/Users/hyejonghong/go/src/github.com/go-martini/martini/router.go:352 (0x38246)
+	(*routeContext).run: panic(err)
+/Users/hyejonghong/go/src/github.com/go-martini/martini/router.go:229 (0x373b9)
+	(*route).Handle: context.run()
+/Users/hyejonghong/go/src/github.com/go-martini/martini/router.go:112 (0x361a7)
+	(*router).Handle: route.Handle(context, res)
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:119 (0x38d0a)
+	Router.Handle.fm: m.Action(r.Handle)
+/usr/local/go/src/pkg/runtime/asm_amd64.s:362 (0x2b972)
+	call64: CALLFN(call64, 64)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:164 (0x343d2)
+	(*context).Next: c.run()
+/Users/hyejonghong/martini/HelpCenter/src/models/base.go:35 (0x32bc3)
+	func.001: c.Next()
+/usr/local/go/src/pkg/runtime/asm_amd64.s:360 (0x2b8b2)
+	call16: CALLFN(call16, 16)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:164 (0x343d2)
+	(*context).Next: c.run()
+/Users/hyejonghong/go/src/github.com/go-martini/martini/recovery.go:140 (0x39286)
+	func.004: c.Next()
+/usr/local/go/src/pkg/runtime/asm_amd64.s:361 (0x2b912)
+	call32: CALLFN(call32, 32)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:164 (0x343d2)
+	(*context).Next: c.run()
+/Users/hyejonghong/go/src/github.com/go-martini/martini/logger.go:25 (0x38a8e)
+	func.001: c.Next()
+/usr/local/go/src/pkg/runtime/asm_amd64.s:362 (0x2b972)
+	call64: CALLFN(call64, 64)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:69 (0x33553)
+	(*Martini).ServeHTTP: m.createContext(res, req).run()
+/usr/local/go/src/pkg/net/http/server.go:1673 (0xba0ff)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+/usr/local/go/src/pkg/net/http/server.go:1174 (0xb7cfe)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+/usr/local/go/src/pkg/runtime/proc.c:1445 (0x154c0)
+	goexit: runtime·goexit(void)
+[martini]2014/10/28 00:48:08 Completed 500 Internal Server Error in 9.90156ms
+[martini]2014/10/28 00:48:17 Started POST /faq/category/add/ for [::1]:51023
+[martini]2014/10/28 00:48:17 PANIC: Value not found for type controllers.Notice
+/Users/hyejonghong/go/src/github.com/go-martini/martini/router.go:352 (0x38246)
+	(*routeContext).run: panic(err)
+/Users/hyejonghong/go/src/github.com/go-martini/martini/router.go:229 (0x373b9)
+	(*route).Handle: context.run()
+/Users/hyejonghong/go/src/github.com/go-martini/martini/router.go:112 (0x361a7)
+	(*router).Handle: route.Handle(context, res)
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:119 (0x38d0a)
+	Router.Handle.fm: m.Action(r.Handle)
+/usr/local/go/src/pkg/runtime/asm_amd64.s:362 (0x2b972)
+	call64: CALLFN(call64, 64)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:164 (0x343d2)
+	(*context).Next: c.run()
+/Users/hyejonghong/martini/HelpCenter/src/models/base.go:35 (0x32bc3)
+	func.001: c.Next()
+/usr/local/go/src/pkg/runtime/asm_amd64.s:360 (0x2b8b2)
+	call16: CALLFN(call16, 16)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:164 (0x343d2)
+	(*context).Next: c.run()
+/Users/hyejonghong/go/src/github.com/go-martini/martini/recovery.go:140 (0x39286)
+	func.004: c.Next()
+/usr/local/go/src/pkg/runtime/asm_amd64.s:361 (0x2b912)
+	call32: CALLFN(call32, 32)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:164 (0x343d2)
+	(*context).Next: c.run()
+/Users/hyejonghong/go/src/github.com/go-martini/martini/logger.go:25 (0x38a8e)
+	func.001: c.Next()
+/usr/local/go/src/pkg/runtime/asm_amd64.s:362 (0x2b972)
+	call64: CALLFN(call64, 64)
+/usr/local/go/src/pkg/reflect/value.go:563 (0x146a80)
+	Value.call: call(fn, args, uint32(frametype.size), uint32(retOffset))
+/usr/local/go/src/pkg/reflect/value.go:411 (0x145727)
+	Value.Call: return v.call("Call", in)
+/Users/hyejonghong/go/src/github.com/codegangsta/inject/inject.go:102 (0x159da7)
+	(*injector).Invoke: return reflect.ValueOf(f).Call(in), nil
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:173 (0x344c6)
+	(*context).run: _, err := c.Invoke(c.handler())
+/Users/hyejonghong/go/src/github.com/go-martini/martini/martini.go:69 (0x33553)
+	(*Martini).ServeHTTP: m.createContext(res, req).run()
+/usr/local/go/src/pkg/net/http/server.go:1673 (0xba0ff)
+	serverHandler.ServeHTTP: handler.ServeHTTP(rw, req)
+/usr/local/go/src/pkg/net/http/server.go:1174 (0xb7cfe)
+	(*conn).serve: serverHandler{c.server}.ServeHTTP(w, w.req)
+/usr/local/go/src/pkg/runtime/proc.c:1445 (0x154c0)
+	goexit: runtime·goexit(void)
+[martini]2014/10/28 00:48:17 Completed 500 Internal Server Error in 4.698ms
+[martini]2014/10/28 01:18:55 listening on :3000 (production)
+[martini]2014/10/28 01:19:07 Started POST /faq/category/add/ for [::1]:51745
+[martini]2014/10/28 01:19:07 Completed 200 OK in 56.445527ms
+[martini]2014/10/28 01:19:13 Started POST /faq/category/add/ for [::1]:51745
+[martini]2014/10/28 01:19:13 Completed 200 OK in 174.920972ms
+[martini]2014/10/28 01:20:56 listening on :3000 (production)
+[martini]2014/10/28 01:21:00 Started POST /faq/category/add/ for [::1]:51945
+[martini]2014/10/28 01:21:00 Completed 200 OK in 8.124016ms
+[martini]2014/10/28 01:21:05 Started POST /faq/category/add/ for [::1]:51945
+[martini]2014/10/28 01:21:05 Completed 200 OK in 7.990358ms
+[martini]2014/10/28 01:21:55 listening on :3000 (production)
+[martini]2014/10/28 01:32:38 listening on :3000 (production)
+[martini]2014/10/28 01:32:47 Started POST /faq/category/add/ for [::1]:52797
+[martini]2014/10/28 01:32:47 Completed 404 Not Found in 327.974us
+[martini]2014/10/28 01:32:52 Started POST /faq/category/add/ for [::1]:52797
+[martini]2014/10/28 01:32:52 Completed 404 Not Found in 173.515us
+[martini]2014/10/28 01:33:16 Started POST /faq/category/add/ for [::1]:52797
+[martini]2014/10/28 01:33:16 Completed 404 Not Found in 192.254us
+[martini]2014/10/28 01:33:22 Started POST /faq/category/add/ for [::1]:52797
+[martini]2014/10/28 01:33:22 Completed 404 Not Found in 201.005us
+[martini]2014/10/28 01:33:27 Started POST /faq/category/add/ for [::1]:52797
+[martini]2014/10/28 01:33:27 Completed 404 Not Found in 456.649us
+[martini]2014/10/28 01:34:02 listening on :3000 (production)
+[martini]2014/10/28 01:34:05 Started POST /faq/category/add/ for [::1]:52851
+[martini]2014/10/28 01:34:05 Completed 404 Not Found in 320.757us
+[martini]2014/10/28 01:34:34 listening on :3000 (production)
+[martini]2014/10/28 01:34:50 Started POST /faq/category/add/ for [::1]:52922
+[martini]2014/10/28 01:34:50 Completed 200 OK in 8.22134ms
+[martini]2014/10/28 01:35:03 Started GET /faq/category/21eec26c-56f9-4d4e-8b0a-a0092a4225e9 for [::1]:52922
+[martini]2014/10/28 01:35:03 Completed 404 Not Found in 179.918us
+[martini]2014/10/28 01:35:15 listening on :3000 (production)
+[martini]2014/10/28 01:35:17 Started GET /faq/category/21eec26c-56f9-4d4e-8b0a-a0092a4225e9 for [::1]:52944
+[martini]2014/10/28 01:35:17 Completed 200 OK in 111.165832ms
+[martini]2014/10/28 01:44:59 listening on :3000 (production)
+[martini]2014/10/28 01:45:43 Started POST /faq/category/add/ for [::1]:54147
+[martini]2014/10/28 01:45:43 Completed 200 OK in 7.308148ms
+[martini]2014/10/28 01:45:57 Started GET /faq/category/list for [::1]:54147
+[martini]2014/10/28 01:45:57 Completed 200 OK in 99.218824ms
+[martini]2014/10/28 01:46:00 Started POST /faq/category/add/ for [::1]:54147
+[martini]2014/10/28 01:46:00 Completed 200 OK in 7.305902ms
+[martini]2014/10/28 01:46:01 Started GET /faq/category/list for [::1]:54147
+[martini]2014/10/28 01:46:01 Completed 200 OK in 6.80664ms
+[martini]2014/10/28 01:46:06 Started GET /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:54147
+[martini]2014/10/28 01:46:06 Completed 200 OK in 118.08033ms
+[martini]2014/10/28 01:46:14 Started PUT /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:54147
+[martini]2014/10/28 01:46:14 Completed 404 Not Found in 373.778589ms
+[martini]2014/10/28 01:47:59 Started PUT /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:54147
+[martini]2014/10/28 01:47:59 Completed 404 Not Found in 7.285959ms
+[martini]2014/10/28 01:48:38 listening on :3000 (production)
+[martini]2014/10/28 01:48:43 Started PUT /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:54360
+[martini]2014/10/28 01:48:43 Completed 404 Not Found in 6.315531ms
+[martini]2014/10/28 01:50:23 Started PUT /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:54360
+[martini]2014/10/28 01:50:23 Completed 404 Not Found in 50.930036ms
+[martini]2014/10/28 01:50:29 listening on :3000 (production)
+[martini]2014/10/28 01:50:32 Started PUT /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:54484
+[martini]2014/10/28 01:50:32 Completed 200 OK in 148.450683ms
+[martini]2014/10/28 01:51:02 Started DELETE /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:54484
+[martini]2014/10/28 01:51:02 Completed 200 OK in 7.733293ms
+[martini]2014/10/28 01:52:03 listening on :3000 (production)
+[martini]2014/10/28 01:53:13 listening on :3000 (production)
+[martini]2014/10/28 01:59:06 listening on :3000 (production)
+[martini]2014/10/28 01:59:13 Started POST /faq/category/add/ for [::1]:55156
+[martini]2014/10/28 01:59:13 Completed 200 OK in 7.843549ms
+[martini]2014/10/28 01:59:23 Started GET /faq/category/09f624b9-ed38-41bf-9f6a-f24086f41c73 for [::1]:55156
+[martini]2014/10/28 01:59:23 Completed 200 OK in 18.337263ms
+[martini]2014/10/28 01:59:26 Started GET /faq/category/list for [::1]:55156
+[martini]2014/10/28 01:59:26 Completed 200 OK in 7.085282ms
+[martini]2014/10/28 01:59:31 Started PUT /faq/category/09f624b9-ed38-41bf-9f6a-f24086f41c73 for [::1]:55156
+[martini]2014/10/28 01:59:31 Completed 200 OK in 39.303629ms
+[martini]2014/10/28 01:59:33 Started GET /faq/category/list for [::1]:55156
+[martini]2014/10/28 01:59:33 Completed 200 OK in 6.615269ms
+[martini]2014/10/28 01:59:42 Started DELETE /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:55156
+[martini]2014/10/28 01:59:42 Completed 404 Not Found in 5.966065ms
+[martini]2014/10/28 02:00:20 listening on :3000 (production)
+[martini]2014/10/28 02:00:23 Started DELETE /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:55179
+[martini]2014/10/28 02:00:23 Completed 404 Not Found in 7.442898ms
+[martini]2014/10/28 02:00:37 listening on :3000 (production)
+[martini]2014/10/28 02:00:40 Started DELETE /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:55187
+[martini]2014/10/28 02:00:40 Completed 404 Not Found in 6.199603ms
+[martini]2014/10/28 02:01:44 listening on :3000 (production)
+[martini]2014/10/28 02:01:49 Started GET /faq/category/list for [::1]:55245
+[martini]2014/10/28 02:01:49 Completed 200 OK in 6.806108ms
+[martini]2014/10/28 02:01:58 Started DELETE /faq/category/09f624b9-ed38-41bf-9f6a-f24086f41c73 for [::1]:55245
+[martini]2014/10/28 02:01:58 Completed 200 OK in 62.594719ms
+[martini]2014/10/28 06:43:29 listening on :3000 (production)
+[martini]2014/10/28 06:43:35 Started GET / for [::1]:61443
+[martini]2014/10/28 06:43:35 Completed 404 Not Found in 208.442us
+[martini]2014/10/28 06:45:25 Started POST /faq/add/ for [::1]:61443
+[martini]2014/10/28 06:45:25 Completed 200 OK in 185.816749ms
+[martini]2014/10/28 06:47:38 Started POST /faq/add/ for [::1]:61443
+[martini]2014/10/28 06:47:38 Completed 200 OK in 49.842398ms
+[martini]2014/10/28 06:48:24 Started GET /faq/1c47a842-3e18-4c21-b7e7-a145e55cecd2 for [::1]:61443
+[martini]2014/10/28 06:48:24 Completed 200 OK in 6.961914ms
+[martini]2014/10/28 06:48:37 Started GET /faq/list for [::1]:61443
+[martini]2014/10/28 06:48:37 Completed 200 OK in 359.901282ms
+[martini]2014/10/28 06:48:40 Started POST /faq/add/ for [::1]:61443
+[martini]2014/10/28 06:48:40 Completed 200 OK in 7.11269ms
+[martini]2014/10/28 06:48:43 Started GET /faq/list for [::1]:61443
+[martini]2014/10/28 06:48:43 Completed 200 OK in 97.536917ms
+[martini]2014/10/28 06:49:58 Started PUT /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:61443
+[martini]2014/10/28 06:49:58 Completed 404 Not Found in 6.217789ms
+[martini]2014/10/28 06:50:46 listening on :3000 (production)
+[martini]2014/10/28 06:50:48 Started PUT /faq/category/24abb5cd-6342-4a0c-8916-4275fdbc59ac for [::1]:62011
+[martini]2014/10/28 06:50:48 Completed 404 Not Found in 8.436886ms
+[martini]2014/10/28 06:51:02 Started PUT /faq/category/1c47a842-3e18-4c21-b7e7-a145e55cecd2 for [::1]:62011
+[martini]2014/10/28 06:51:02 Completed 404 Not Found in 7.036854ms
+[martini]2014/10/28 06:51:08 Started PUT /faq/1c47a842-3e18-4c21-b7e7-a145e55cecd2 for [::1]:62011
+[martini]2014/10/28 06:51:08 Completed 200 OK in 7.224893ms
+[martini]2014/10/28 06:51:32 Started PUT /faq/1c47a842-3e18-4c21-b7e7-a145e55cecd2 for [::1]:62011
+[martini]2014/10/28 06:51:32 Completed 200 OK in 7.192319ms
+[martini]2014/10/28 06:52:18 Started DELETE /faq/1c47a842-3e18-4c21-b7e7-a145e55cecd2 for [::1]:62011
+[martini]2014/10/28 06:52:18 Completed 200 OK in 7.572558ms
+[martini]2014/10/28 06:52:20 Started DELETE /faq/1c47a842-3e18-4c21-b7e7-a145e55cecd2 for [::1]:62011
+[martini]2014/10/28 06:52:20 Completed 404 Not Found in 7.289325ms
+[martini]2014/10/28 06:52:21 Started DELETE /faq/1c47a842-3e18-4c21-b7e7-a145e55cecd2 for [::1]:62011
+[martini]2014/10/28 06:52:21 Completed 404 Not Found in 7.693259ms
+[martini]2014/10/28 06:53:29 Started GET /faq/list/ios for [::1]:62011
+[martini]2014/10/28 06:53:29 Completed 404 Not Found in 961.251us
+[martini]2014/10/28 06:53:55 listening on :3000 (production)
+[martini]2014/10/28 06:53:58 Started GET /faq/list/ios for [::1]:62284
+[martini]2014/10/28 06:53:58 Completed 200 OK in 6.602067ms
+[martini]2014/10/28 06:54:15 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:15 Completed 200 OK in 7.675503ms
+[martini]2014/10/28 06:54:15 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:15 Completed 200 OK in 6.566974ms
+[martini]2014/10/28 06:54:15 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:15 Completed 200 OK in 6.384675ms
+[martini]2014/10/28 06:54:16 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:16 Completed 200 OK in 6.726021ms
+[martini]2014/10/28 06:54:16 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:16 Completed 200 OK in 6.433911ms
+[martini]2014/10/28 06:54:16 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:16 Completed 200 OK in 251.679806ms
+[martini]2014/10/28 06:54:16 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:16 Completed 200 OK in 96.052869ms
+[martini]2014/10/28 06:54:17 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:17 Completed 200 OK in 71.973992ms
+[martini]2014/10/28 06:54:17 Started POST /faq/add/ for [::1]:62284
+[martini]2014/10/28 06:54:17 Completed 200 OK in 120.83646ms
+[martini]2014/10/28 06:54:19 Started GET /faq/list/ios for [::1]:62284
+[martini]2014/10/28 06:54:19 Completed 200 OK in 6.445008ms
+[martini]2014/10/28 06:54:24 Started GET /faq/list/ for [::1]:62284
+[martini]2014/10/28 06:54:24 Completed 200 OK in 7.172203ms
+[martini]2014/10/28 06:54:32 Started GET /faq/list/"ios" for [::1]:62284
+[martini]2014/10/28 06:54:33 Completed 200 OK in 79.941499ms
+[martini]2014/10/28 06:55:19 listening on :3000 (production)
+[martini]2014/10/28 06:55:22 Started GET /faq/list/ios for [::1]:62358
+[martini]2014/10/28 06:55:22 Completed 200 OK in 117.829695ms
+[martini]2014/10/28 06:55:45 listening on :3000 (production)
+[martini]2014/10/28 06:55:48 Started GET /faq/list/ios for [::1]:62364
+[martini]2014/10/28 06:55:48 Completed 200 OK in 6.767906ms
+[martini]2014/10/28 06:56:19 Started GET /faq/list/ios for [::1]:62364
+[martini]2014/10/28 06:56:19 Completed 200 OK in 6.518366ms
+[martini]2014/10/28 06:56:31 listening on :3000 (production)
+[martini]2014/10/28 06:56:34 Started GET /faq/list/ios for [::1]:62405
+[martini]2014/10/28 06:56:34 Completed 404 Not Found in 5.943895ms
+[martini]2014/10/28 06:57:53 Started GET /faq/list/Accounts FAQ for [::1]:62405
+[martini]2014/10/28 06:57:53 Completed 200 OK in 106.797641ms
+[martini]2014/10/28 06:58:01 listening on :3000 (production)
+[martini]2014/10/28 06:58:05 Started GET /faq/list/Accounts FAQ for [::1]:62437
+[martini]2014/10/28 06:58:05 Completed 200 OK in 7.557096ms
+[martini]2014/10/28 07:42:18 listening on :3000 (production)
+[martini]2014/10/28 07:42:42 Started GET /test for [::1]:64113
+[martini]2014/10/28 07:42:42 Completed 404 Not Found in 1.093518ms
+[martini]2014/10/28 07:43:09 Started POST /notice/add for [::1]:64113
+[martini]2014/10/28 07:43:09 Completed 200 OK in 7.408176ms
+[martini]2014/10/28 07:44:33 listening on :3000 (production)
+[martini]2014/10/28 07:44:37 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:64128
+[martini]2014/10/28 07:44:37 Completed 404 Not Found in 77.408996ms
+[martini]2014/10/28 07:45:57 listening on :3000 (production)
+[martini]2014/10/28 07:46:19 listening on :3000 (production)
+[martini]2014/10/28 07:46:40 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:64140
+[martini]2014/10/28 07:46:40 Completed 404 Not Found in 7.04566ms
+[martini]2014/10/28 07:46:47 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e!! for [::1]:64140
+[martini]2014/10/28 07:46:47 Completed 404 Not Found in 5.929027ms
+[martini]2014/10/28 07:47:10 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e*** for [::1]:64140
+[martini]2014/10/28 07:47:10 Completed 404 Not Found in 5.521172ms
+[martini]2014/10/28 07:47:14 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e*** for [::1]:64140
+[martini]2014/10/28 07:47:14 Completed 404 Not Found in 7.091439ms
+[martini]2014/10/28 07:47:28 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e[] for [::1]:64140
+[martini]2014/10/28 07:47:28 Completed 404 Not Found in 7.188889ms
+[martini]2014/10/28 07:47:50 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e/" for [::1]:64140
+[martini]2014/10/28 07:47:50 Completed 404 Not Found in 602.202us
+[martini]2014/10/28 07:47:57 Started GET /notice/020b1ae9-10ef-4b3/"9-ac8d-022c576bdf0e for [::1]:64140
+[martini]2014/10/28 07:47:57 Completed 404 Not Found in 153.897us
+[martini]2014/10/28 07:48:03 Started GET /notice/020b1ae9-10ef-4b3"/"9-ac8d-022c576bdf0e for [::1]:64140
+[martini]2014/10/28 07:48:03 Completed 404 Not Found in 126.142us
+[martini]2014/10/28 07:48:12 Started GET /notice/020b1ae9-10ef-4b3//9-ac8d-022c576bdf0e for [::1]:64140
+[martini]2014/10/28 07:48:12 Completed 404 Not Found in 151.316us
+[martini]2014/10/28 07:48:24 Started GET /notice/020b1ae9-10ef-4b39-ac8d-022c576bdf0e for [::1]:64140
+[martini]2014/10/28 07:48:24 Completed 404 Not Found in 56.227188ms
+[martini]2014/10/28 08:33:25 listening on :3000 (production)
+[martini]2014/10/28 08:34:36 Started GET /notice/ced99973-3793-4c65-99a2-c0a76a8dc2ce for [::1]:51613
+[martini]2014/10/28 08:34:36 Completed 404 Not Found in 6.931299ms
+[martini]2014/10/28 08:34:40 Started GET /notice/ced99973-3793-4c65-99a2-c0a76a8dc2ce for [::1]:51613
+[martini]2014/10/28 08:34:40 Completed 404 Not Found in 6.372192ms
+[martini]2014/10/28 08:36:09 listening on :3000 (production)
+[martini]2014/10/28 08:36:13 Started GET /notice/ced99973-3793-4c65-99a2-c0a76a8dc2ce for [::1]:51679
+[martini]2014/10/28 08:36:13 Completed 404 Not Found in 6.658449ms
+[martini]2014/10/28 08:37:38 Started POST /notice/add for [::1]:51679
+[martini]2014/10/28 08:37:38 Completed 200 OK in 170.346004ms
+[martini]2014/10/28 08:37:57 Started GET /notice/a0ca5448-76c7-47a0-8788-810fd0b4e10e for [::1]:51679
+[martini]2014/10/28 08:37:57 Completed 200 OK in 7.125039ms
