@@ -7,6 +7,7 @@ import (
 	"./src/utility"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/binding"
+	"github.com/martini-contrib/cors"
 	"github.com/martini-contrib/render"
 	"runtime"
 )
@@ -22,6 +23,14 @@ func main() {
 
 	f := utility.InitLogger(m)
 	defer f.Close()
+
+	m.Use(cors.Allow(&cors.Options{
+		AllowOrigins:     []string{"*"},
+		AllowMethods:     []string{"PUT", "GET", "POST", "DELETE"},
+		AllowHeaders:     []string{"Origin"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
 
 	m.Group("/notice", func(r martini.Router) {
 		r.Get("/list", controllers.ReadListNotice)
