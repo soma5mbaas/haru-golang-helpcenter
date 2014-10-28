@@ -48,5 +48,9 @@ func main() {
 		r.Delete("/:id", binding.Json(controllers.Faq{}), controllers.DeleteFaq)
 	})
 
+	m.Group("/email", func(r martini.Router) {
+		r.Post("/send", binding.Json(controllers.Faq{}), controllers.CreateFaq)
+	})
+
 	m.Run()
 }

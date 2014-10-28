@@ -26,7 +26,6 @@ func MapEncoder(c martini.Context, w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	prettyurl := reg.ReplaceAllString(r.URL.Path, "-")
-
 	re := regexp.MustCompile(":([^/]*)")
 	prettyurl = re.ReplaceAllString(prettyurl, "{$1}")
 

@@ -7,6 +7,7 @@ import (
 	"github.com/martini-contrib/render"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"log"
 	"net/http"
 	"time"
 )
@@ -17,7 +18,7 @@ type FaqCategory struct {
 	Time     int64  `bson:"time,omitempty" ` // 시간
 }
 
-func CreateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory, r render.Render, db *mgo.Database) {
+func CreateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory, r render.Render, db *mgo.Database, f *log.Logger) {
 
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
@@ -29,8 +30,19 @@ func CreateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory,
 	fa.Id = uuid.New()
 
 	CollectionName := handlers.CollectionNameFAQCategory(appid)
-	err := db.C(CollectionName).Insert(fa)
-	r.JSON(http.StatusOK, map[string]interface{}{"err": err, "Faq": fa})
+	if count, _ := db.C(CollectionName).Count(); count > 0 {
+		if err := db.Session.DB("admin").Run(bson.M{"shardCollection": "haru" + "." + CollectionName, "key": bson.M{"_id": 1}}, nil); err != nil {
+			f.Println(CollectionName+" Sharde Fail :", err)
+		} else {
+			f.Println(CollectionName+" Sharde ok :", err)
+		}
+	}
+
+	if err := db.C(CollectionName).Insert(fa); err != nil {
+		r.JSON(http.StatusNotFound, err)
+		return
+	}
+	r.JSON(http.StatusOK, map[string]interface{}{"Faq": fa})
 }
 
 func ReadListFaqCategory(req *http.Request, r render.Render, db *mgo.Database) {

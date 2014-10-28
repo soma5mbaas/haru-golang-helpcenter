@@ -7,6 +7,7 @@ import (
 	"github.com/martini-contrib/render"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"log"
 	"net/http"
 	"time"
 )
@@ -20,7 +21,7 @@ type Notice struct {
 	URL       string `bson:"url,omitempty" `           // Image URL
 }
 
-func CreateNotice(req *http.Request, params martini.Params, notice Notice, r render.Render, db *mgo.Database) {
+func CreateNotice(req *http.Request, params martini.Params, notice Notice, r render.Render, db *mgo.Database, f *log.Logger) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
 		r.JSON(http.StatusNotFound, "insert to Application-Id")
@@ -30,13 +31,21 @@ func CreateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 	notice.Time = time.Now().Unix()
 	notice.Id = uuid.New()
 	notice.Reception = false
+
 	CollectionName := handlers.CollectionNameNotice(appid)
-	err := db.C(CollectionName).Insert(notice)
-	if err != nil {
+	if count, _ := db.C(CollectionName).Count(); count > 0 {
+		if err := db.Session.DB("admin").Run(bson.M{"shardCollection": "haru" + "." + CollectionName, "key": bson.M{"_id": 1}}, nil); err != nil {
+			f.Println(CollectionName+" Sharde Fail :", err)
+		} else {
+			f.Println(CollectionName+" Sharde ok :", err)
+		}
+	}
+
+	if err := db.C(CollectionName).Insert(notice); err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
 	}
-	r.JSON(http.StatusOK, map[string]interface{}{"err": err, "Notice": notice})
+	r.JSON(http.StatusOK, map[string]interface{}{"Notice": notice})
 }
 
 func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
@@ -47,8 +56,8 @@ func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 	}
 	var notices []Notice
 	CollectionName := handlers.CollectionNameNotice(appid)
-	err := db.C(CollectionName).Find(bson.M{}).All(&notices)
-	if err != nil {
+
+	if err := db.C(CollectionName).Find(bson.M{}).Sort("-time").All(&notices); err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
 	}
@@ -64,8 +73,8 @@ func ReadIdNotice(req *http.Request, params martini.Params, r render.Render, db 
 	rawId := params["id"]
 	var notices Notice
 	CollectionName := handlers.CollectionNameNotice(appid)
-	err := db.C(CollectionName).Find(bson.M{"_id": string(rawId)}).One(&notices)
-	if err != nil {
+
+	if err := db.C(CollectionName).Find(bson.M{"_id": string(rawId)}).One(&notices); err != nil {
 		r.JSON(http.StatusNotFound, "NotFound "+rawId)
 		return
 	}
@@ -83,8 +92,8 @@ func UpdateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 	colQuerier := bson.M{"_id": rawId}
 	change := bson.M{"$set": notice}
 	CollectionName := handlers.CollectionNameNotice(appid)
-	err := db.C(CollectionName).Update(colQuerier, change)
-	if err != nil {
+
+	if err := db.C(CollectionName).Update(colQuerier, change); err != nil {
 		r.JSON(http.StatusNotFound, "NotFound "+rawId)
 		return
 	}
@@ -100,8 +109,8 @@ func DeleteNotice(req *http.Request, params martini.Params, r render.Render, db 
 	}
 	rawId := params["id"]
 	CollectionName := handlers.CollectionNameNotice(appid)
-	err := db.C(CollectionName).Remove(bson.M{"_id": rawId})
-	if err != nil {
+
+	if err := db.C(CollectionName).Remove(bson.M{"_id": rawId}); err != nil {
 		r.JSON(http.StatusNotFound, "NotFound "+rawId)
 		return
 	}
