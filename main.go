@@ -20,6 +20,7 @@ func main() {
 	m.Use(render.Renderer())
 	m.Use(encoding.MapEncoder)
 	m.Use(models.InitDB())
+	m.Use(models.InitRabbitMQ())
 
 	f := utility.InitLogger(m)
 	defer f.Close()
@@ -27,7 +28,7 @@ func main() {
 	m.Use(cors.Allow(&cors.Options{
 		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"PUT", "GET", "POST", "DELETE"},
-		AllowHeaders:     []string{"Origin"},
+		AllowHeaders:     []string{"Application-Id", "Content-Type"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
@@ -58,7 +59,7 @@ func main() {
 	})
 
 	m.Group("/email", func(r martini.Router) {
-		r.Post("/send", binding.Json(controllers.Faq{}), controllers.CreateFaq)
+		r.Post("/send", binding.Json(controllers.Email{}), controllers.SendEmail)
 	})
 
 	m.Run()

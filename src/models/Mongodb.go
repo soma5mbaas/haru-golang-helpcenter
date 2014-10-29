@@ -1,7 +1,4 @@
-// base
 package models
-
-//package main
 
 import (
 	"../../src"
