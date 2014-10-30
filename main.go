@@ -51,11 +51,21 @@ func main() {
 
 	m.Group("/faq", func(r martini.Router) {
 		r.Get("/list", controllers.ReadListFaq)
-		r.Get("/list/:id", binding.Json(controllers.Faq{}), controllers.ReadListCategoryFaq)
+		r.Get("/list/:category", controllers.ReadListCategoryFaq)
 		r.Get("/:id", controllers.ReadIdFaq)
 		r.Post("/add", binding.Json(controllers.Faq{}), controllers.CreateFaq)
 		r.Put("/:id", binding.Json(controllers.Faq{}), controllers.UpdateFaq)
 		r.Delete("/:id", binding.Json(controllers.Faq{}), controllers.DeleteFaq)
+	})
+
+	m.Group("/qna", func(r martini.Router) {
+		r.Get("/list", controllers.ReadListQnA)
+		r.Get("/list/:id", controllers.ReadListUserQnA)
+		r.Get("/:id", controllers.ReadIdQnA)
+		r.Post("/add", binding.Json(controllers.QnA{}), controllers.CreateQnA)
+		r.Post("/comment/:id", binding.Json(controllers.Comment{}), controllers.AddcommentFaq)
+		r.Put("/:id", binding.Json(controllers.QnA{}), controllers.UpdateQnA)
+		r.Delete("/:id", binding.Json(controllers.QnA{}), controllers.DeleteQnA)
 	})
 
 	m.Group("/email", func(r martini.Router) {

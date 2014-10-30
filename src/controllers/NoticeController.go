@@ -56,7 +56,6 @@ func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 	}
 	var notices []Notice
 	CollectionName := handlers.CollectionNameNotice(appid)
-
 	if err := db.C(CollectionName).Find(bson.M{}).Sort("-time").All(&notices); err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
@@ -73,7 +72,6 @@ func ReadIdNotice(req *http.Request, params martini.Params, r render.Render, db 
 	rawId := params["id"]
 	var notices Notice
 	CollectionName := handlers.CollectionNameNotice(appid)
-
 	if err := db.C(CollectionName).Find(bson.M{"_id": string(rawId)}).One(&notices); err != nil {
 		r.JSON(http.StatusNotFound, "NotFound "+rawId)
 		return
@@ -92,7 +90,6 @@ func UpdateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 	colQuerier := bson.M{"_id": rawId}
 	change := bson.M{"$set": notice}
 	CollectionName := handlers.CollectionNameNotice(appid)
-
 	if err := db.C(CollectionName).Update(colQuerier, change); err != nil {
 		r.JSON(http.StatusNotFound, "NotFound "+rawId)
 		return
@@ -109,7 +106,6 @@ func DeleteNotice(req *http.Request, params martini.Params, r render.Render, db 
 	}
 	rawId := params["id"]
 	CollectionName := handlers.CollectionNameNotice(appid)
-
 	if err := db.C(CollectionName).Remove(bson.M{"_id": rawId}); err != nil {
 		r.JSON(http.StatusNotFound, "NotFound "+rawId)
 		return

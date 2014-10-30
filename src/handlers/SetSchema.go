@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+func CollectionNameQnA(appid string) string {
+	return fmt.Sprintf("qna:%s", appid)
+}
+
 func CollectionNameFAQCategory(appid string) string {
 	return fmt.Sprintf("faq:%s:category", appid)
 }

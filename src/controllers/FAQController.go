@@ -55,7 +55,7 @@ func ReadListCategoryFaq(req *http.Request, params martini.Params, r render.Rend
 	}
 
 	var faqs []Faq
-	rawId := params["id"]
+	rawId := params["category"]
 	CollectionName := handlers.CollectionNameFAQ(appid)
 	err := db.C(CollectionName).Find(bson.M{"category": rawId}).All(&faqs)
 	if err != nil {

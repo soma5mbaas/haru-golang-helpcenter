@@ -8,7 +8,7 @@ import (
 )
 
 type Email struct {
-	Address string `json:"address"` // UUID
+	Address string `json:"address"` // Email
 	Title   string `json:"title"`   // 제목
 	Body    string `json:"body"`    // 본문
 }
