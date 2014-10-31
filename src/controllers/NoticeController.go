@@ -54,12 +54,49 @@ func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 		r.JSON(http.StatusNotFound, "insert to Application-Id")
 		return
 	}
-	var notices []Notice
+	colQuerier := bson.M{}
+	change := bson.M{"$set": bson.M{"reception": true}}
 	CollectionName := handlers.CollectionNameNotice(appid)
+	if _, err := db.C(CollectionName).UpdateAll(colQuerier, change); err != nil {
+		r.JSON(http.StatusNotFound, err)
+		return
+	}
+	var notices []Notice
 	if err := db.C(CollectionName).Find(bson.M{}).Sort("-time").All(&notices); err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
 	}
+
+	// /////////
+	// change := mgo.Change{
+	// 	Update:    bson.M{"$set": bson.M{"reception": true}},
+	// 	ReturnNew: false,
+	// }
+	// a, b := db.C(CollectionName).Find(nil).Select(bson.M{"_id": 1}).Apply(change, &notices)
+	// fmt.Println(a, b)
+	//////
+	// expressions := make([]bson.M, len(notices))
+	// for i := 0; i < len(notices); i++ {
+	// 	notices[i].Reception = true
+	// 	b, _ := json.Marshal(notices[i])
+	// 	expressions[i] = b
+	// }
+
+	// tag := bson.M{}
+	// tags := []bson.M{}
+	// iter := db.C(CollectionName).Pipe(expressions).Iter()
+	// // BUG: mgo is not returning consistent results. It seems to be only broken with Pipe().
+	// for iter.Next(&tag) {
+	// 	tags = append(tags, tag["_id"].(bson.M))
+	// }
+	// if err := iter.Close(); err != nil {
+	// 	log.Fatalln(err)
+	// 	return
+	// }
+
+	// pipe := db.C(CollectionName).Pipe(expressions)
+	// iter := pipe.All(expressions)
+
 	r.JSON(http.StatusOK, notices)
 }
 

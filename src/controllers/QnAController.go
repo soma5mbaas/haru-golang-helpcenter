@@ -13,14 +13,14 @@ import (
 )
 
 type QnA struct {
-	Id           string `bson:"_id,omitempty"` // UUID
-	EmailAddress string `bson:"emailaddress"`  // Email
-	Title        string `bson:"title" `        // 제목
-	Body         string `bson:"body" `         // 본문
-	Category     string `bson:"category"`      // Category
-	Time         int64  `bson:"time" `         // 시간
-	Comment      string `bson:"comment" `      // Comment
-	CommentTime  int64  `bson:"commenttime" `  // Comment 단 시간
+	Id           string `bson:"_id,omitempty"`        // UUID
+	EmailAddress string `bson:"emailaddress"`         // Email
+	Body         string `bson:"body" `                // 본문
+	Category     string `bson:"category"`             // Category
+	Time         int64  `bson:"time" `                // 시간
+	Reception    bool   `bson:"reception,omitempty" ` // 읽기여부
+	Comment      string `bson:"comment" `             // Comment
+	CommentTime  int64  `bson:"commenttime" `         // Comment 단 시간
 }
 type Comment struct {
 	Content string `bson:"content" ` // Comment
@@ -35,6 +35,7 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 
 	qna.Time = time.Now().Unix()
 	qna.Id = uuid.New()
+	qna.Reception = false
 	if qna.Comment != "" {
 		qna.CommentTime = qna.Time
 	}
@@ -84,7 +85,7 @@ func ReadListUserQnA(req *http.Request, params martini.Params, r render.Render, 
 	var qnas []QnA
 	rawId := params["id"]
 	CollectionName := handlers.CollectionNameQnA(appid)
-	if err := db.C(CollectionName).Find(bson.M{"emailaddress": rawId}).All(&qnas); err != nil {
+	if err := db.C(CollectionName).Find(bson.M{"emailaddress": rawId}).Sort("-time").All(&qnas); err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
 	}
@@ -98,10 +99,16 @@ func ReadListQnA(req *http.Request, r render.Render, db *mgo.Database) {
 		r.JSON(http.StatusNotFound, "insert to Application-Id")
 		return
 	}
-
-	var qnas []QnA
+	////
+	colQuerier := bson.M{}
+	change := bson.M{"$set": bson.M{"reception": true}}
 	CollectionName := handlers.CollectionNameQnA(appid)
-	if err := db.C(CollectionName).Find(bson.M{}).All(&qnas); err != nil {
+	if _, err := db.C(CollectionName).UpdateAll(colQuerier, change); err != nil {
+		r.JSON(http.StatusNotFound, err)
+		return
+	}
+	var qnas []QnA
+	if err := db.C(CollectionName).Find(bson.M{}).Sort("-time").All(&qnas); err != nil {
 		r.JSON(http.StatusNotFound, err)
 		return
 	}
