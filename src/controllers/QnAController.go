@@ -50,7 +50,7 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 	}
 
 	if err := db.C(CollectionName).Insert(qna); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 	r.JSON(http.StatusOK, map[string]interface{}{"QnA": qna})
@@ -59,7 +59,7 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 func AddcommentFaq(req *http.Request, params martini.Params, com Comment, r render.Render, db *mgo.Database, f *log.Logger) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -78,7 +78,7 @@ func AddcommentFaq(req *http.Request, params martini.Params, com Comment, r rend
 func ReadListUserQnA(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -96,7 +96,7 @@ func ReadListUserQnA(req *http.Request, params martini.Params, r render.Render, 
 func ReadListQnA(req *http.Request, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 	////
@@ -104,12 +104,12 @@ func ReadListQnA(req *http.Request, r render.Render, db *mgo.Database) {
 	change := bson.M{"$set": bson.M{"reception": true}}
 	CollectionName := handlers.CollectionNameQnA(appid)
 	if _, err := db.C(CollectionName).UpdateAll(colQuerier, change); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 	var qnas []QnA
 	if err := db.C(CollectionName).Find(bson.M{}).Sort("-time").All(&qnas); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 
@@ -120,7 +120,7 @@ func ReadIdQnA(req *http.Request, params martini.Params, r render.Render, db *mg
 
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -128,7 +128,7 @@ func ReadIdQnA(req *http.Request, params martini.Params, r render.Render, db *mg
 	rawId := params["id"]
 	CollectionName := handlers.CollectionNameQnA(appid)
 	if err := db.C(CollectionName).Find(bson.M{"_id": rawId}).One(&qna); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 
@@ -138,7 +138,7 @@ func ReadIdQnA(req *http.Request, params martini.Params, r render.Render, db *mg
 func UpdateQnA(req *http.Request, params martini.Params, qna QnA, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -148,7 +148,7 @@ func UpdateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 	change := bson.M{"$set": qna}
 	CollectionName := handlers.CollectionNameQnA(appid)
 	if err := db.C(CollectionName).Update(colQuerier, change); err != nil {
-		r.JSON(http.StatusNotFound, "NotFound "+rawId)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
 
@@ -158,14 +158,14 @@ func UpdateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 func DeleteQnA(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
 	rawId := params["id"]
 	CollectionName := handlers.CollectionNameQnA(appid)
 	if err := db.C(CollectionName).Remove(bson.M{"_id": rawId}); err != nil {
-		r.JSON(http.StatusNotFound, "NotFound "+rawId)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
 

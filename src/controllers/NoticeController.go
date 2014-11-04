@@ -24,7 +24,7 @@ type Notice struct {
 func CreateNotice(req *http.Request, params martini.Params, notice Notice, r render.Render, db *mgo.Database, f *log.Logger) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -42,7 +42,7 @@ func CreateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 	}
 
 	if err := db.C(CollectionName).Insert(notice); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 	r.JSON(http.StatusOK, map[string]interface{}{"Notice": notice})
@@ -51,19 +51,19 @@ func CreateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 	colQuerier := bson.M{}
 	change := bson.M{"$set": bson.M{"reception": true}}
 	CollectionName := handlers.CollectionNameNotice(appid)
 	if _, err := db.C(CollectionName).UpdateAll(colQuerier, change); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 	var notices []Notice
 	if err := db.C(CollectionName).Find(bson.M{}).Sort("-time").All(&notices); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 
@@ -103,14 +103,14 @@ func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 func ReadIdNotice(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 	rawId := params["id"]
 	var notices Notice
 	CollectionName := handlers.CollectionNameNotice(appid)
 	if err := db.C(CollectionName).Find(bson.M{"_id": string(rawId)}).One(&notices); err != nil {
-		r.JSON(http.StatusNotFound, "NotFound "+rawId)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
 	r.JSON(http.StatusOK, notices)
@@ -119,7 +119,7 @@ func ReadIdNotice(req *http.Request, params martini.Params, r render.Render, db 
 func UpdateNotice(req *http.Request, params martini.Params, notice Notice, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 	rawId := params["id"]
@@ -128,24 +128,25 @@ func UpdateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 	change := bson.M{"$set": notice}
 	CollectionName := handlers.CollectionNameNotice(appid)
 	if err := db.C(CollectionName).Update(colQuerier, change); err != nil {
-		r.JSON(http.StatusNotFound, "NotFound "+rawId)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
 
 	r.JSON(http.StatusOK, "UPDATE_OK")
 }
 
-func DeleteNotice(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
+func DeleteNotice(c http.ResponseWriter, req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 	rawId := params["id"]
 	CollectionName := handlers.CollectionNameNotice(appid)
 	if err := db.C(CollectionName).Remove(bson.M{"_id": rawId}); err != nil {
-		r.JSON(http.StatusNotFound, "NotFound "+rawId)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
+
 	r.JSON(http.StatusOK, "DELETE_OK")
 }

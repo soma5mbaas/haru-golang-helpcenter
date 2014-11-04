@@ -22,7 +22,7 @@ func CreateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory,
 
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -39,7 +39,7 @@ func CreateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory,
 	}
 
 	if err := db.C(CollectionName).Insert(fa); err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 	r.JSON(http.StatusOK, map[string]interface{}{"Faq": fa})
@@ -48,7 +48,7 @@ func CreateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory,
 func ReadListFaqCategory(req *http.Request, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -57,7 +57,7 @@ func ReadListFaqCategory(req *http.Request, r render.Render, db *mgo.Database) {
 	err := db.C(CollectionName).Find(bson.M{}).All(&faqs)
 
 	if err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 
@@ -68,7 +68,7 @@ func ReadIdFaqCategory(req *http.Request, params martini.Params, r render.Render
 
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -78,7 +78,7 @@ func ReadIdFaqCategory(req *http.Request, params martini.Params, r render.Render
 	err := db.C(CollectionName).Find(bson.M{"_id": rawId}).One(&fa)
 
 	if err != nil {
-		r.JSON(http.StatusNotFound, err)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
 
@@ -88,7 +88,7 @@ func ReadIdFaqCategory(req *http.Request, params martini.Params, r render.Render
 func UpdateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -100,7 +100,7 @@ func UpdateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory,
 	CollectionName := handlers.CollectionNameFAQCategory(appid)
 	err := db.C(CollectionName).Update(colQuerier, change)
 	if err != nil {
-		r.JSON(http.StatusNotFound, "NotFound "+rawId)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
 
@@ -110,7 +110,7 @@ func UpdateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory,
 func DeleteFaqCategory(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
-		r.JSON(http.StatusNotFound, "insert to Application-Id")
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
 		return
 	}
 
@@ -118,7 +118,7 @@ func DeleteFaqCategory(req *http.Request, params martini.Params, r render.Render
 	CollectionName := handlers.CollectionNameFAQCategory(appid)
 	err := db.C(CollectionName).Remove(bson.M{"_id": rawId})
 	if err != nil {
-		r.JSON(http.StatusNotFound, "NotFound "+rawId)
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
 
