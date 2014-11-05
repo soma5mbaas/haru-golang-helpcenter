@@ -32,13 +32,13 @@ func CreateFaq(req *http.Request, params martini.Params, fa Faq, r render.Render
 	fa.Id = uuid.New()
 
 	CollectionName := handlers.CollectionNameFAQ(appid)
-	if count, _ := db.C(CollectionName).Count(); count > 0 {
-		if err := db.Session.DB("admin").Run(bson.M{"shardCollection": "haru" + "." + CollectionName, "key": bson.M{"_id": 1}}, nil); err != nil {
-			f.Println(CollectionName+" Sharde Fail :", err)
-		} else {
-			f.Println(CollectionName+" Sharde ok :", err)
-		}
-	}
+	// if count, _ := db.C(CollectionName).Count(); count > 0 {
+	// 	if err := db.Session.DB("admin").Run(bson.M{"shardCollection": "haru" + "." + CollectionName, "key": bson.M{"_id": 1}}, nil); err != nil {
+	// 		f.Println(CollectionName+" Sharde Fail :", err)
+	// 	} else {
+	// 		f.Println(CollectionName+" Sharde ok :", err)
+	// 	}
+	// }
 
 	if err := db.C(CollectionName).Insert(fa); err != nil {
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
@@ -63,7 +63,7 @@ func ReadListCategoryFaq(req *http.Request, params martini.Params, r render.Rend
 		return
 	}
 
-	r.JSON(http.StatusOK, faqs)
+	r.JSON(http.StatusOK, map[string]interface{}{"return": faqs})
 }
 
 func ReadListFaq(req *http.Request, r render.Render, db *mgo.Database) {
@@ -81,7 +81,7 @@ func ReadListFaq(req *http.Request, r render.Render, db *mgo.Database) {
 		return
 	}
 
-	r.JSON(http.StatusOK, faqs)
+	r.JSON(http.StatusOK, map[string]interface{}{"return": faqs})
 }
 
 func ReadIdFaq(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {

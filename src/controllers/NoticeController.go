@@ -33,13 +33,13 @@ func CreateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 	notice.Reception = false
 
 	CollectionName := handlers.CollectionNameNotice(appid)
-	if count, _ := db.C(CollectionName).Count(); count > 0 {
-		if err := db.Session.DB("admin").Run(bson.M{"shardCollection": "haru" + "." + CollectionName, "key": bson.M{"_id": 1}}, nil); err != nil {
-			f.Println(CollectionName+" Sharde Fail :", err)
-		} else {
-			f.Println(CollectionName+" Sharde ok :", err)
-		}
-	}
+	// if count, _ := db.C(CollectionName).Count(); count > 0 {
+	// 	if err := db.Session.DB("admin").Run(bson.M{"shardCollection": "haru" + "." + CollectionName, "key": bson.M{"_id": 1}}, nil); err != nil {
+	// 		f.Println(CollectionName+" Sharde Fail :", err)
+	// 	} else {
+	// 		f.Println(CollectionName+" Sharde ok :", err)
+	// 	}
+	// }
 
 	if err := db.C(CollectionName).Insert(notice); err != nil {
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
@@ -97,7 +97,7 @@ func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 	// pipe := db.C(CollectionName).Pipe(expressions)
 	// iter := pipe.All(expressions)
 
-	r.JSON(http.StatusOK, notices)
+	r.JSON(http.StatusOK, map[string]interface{}{"return": notices})
 }
 
 func ReadIdNotice(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
@@ -113,7 +113,7 @@ func ReadIdNotice(req *http.Request, params martini.Params, r render.Render, db 
 		r.JSON(handlers.HttpErr(http.StatusNotFound, "NotFound "+rawId))
 		return
 	}
-	r.JSON(http.StatusOK, notices)
+	r.JSON(http.StatusOK, map[string]interface{}{"return": notices})
 }
 
 func UpdateNotice(req *http.Request, params martini.Params, notice Notice, r render.Render, db *mgo.Database) {

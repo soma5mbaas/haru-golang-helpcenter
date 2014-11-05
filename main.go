@@ -21,7 +21,7 @@ func main() {
 	m.Use(encoding.MapEncoder)
 	m.Use(models.InitDB())
 	m.Use(models.InitRabbitMQ())
-
+	//	log.Fatal(http.ListenAndServe(":10600", m))
 	f := utility.InitLogger(m)
 	defer f.Close()
 
