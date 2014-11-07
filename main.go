@@ -9,6 +9,8 @@ import (
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/cors"
 	"github.com/martini-contrib/render"
+	// "log"
+	// "net/http"
 	"runtime"
 )
 
@@ -21,7 +23,7 @@ func main() {
 	m.Use(encoding.MapEncoder)
 	m.Use(models.InitDB())
 	m.Use(models.InitRabbitMQ())
-	//	log.Fatal(http.ListenAndServe(":10600", m))
+	//log.Fatal(http.ListenAndServe(":10600", m))
 	f := utility.InitLogger(m)
 	defer f.Close()
 

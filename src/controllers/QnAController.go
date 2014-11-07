@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"../../src"
 	"../handlers"
 	"code.google.com/p/go-uuid/uuid"
 	"github.com/go-martini/martini"
@@ -48,6 +49,14 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 	// 		f.Println(CollectionName+" Sharde ok :", err)
 	// 	}
 	// }
+
+	var request string = config.DASHBOARD_WEB + "/qna/webhook?appid="
+	request += appid + "&messagetype=qna&body=" + qna.Body
+
+	_, Geterr := http.Get(request)
+	if Geterr != nil {
+		log.Println(Geterr)
+	}
 
 	if err := db.C(CollectionName).Insert(qna); err != nil {
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))

@@ -1,23 +1,24 @@
 package handlers
 
 import (
+	"../../src"
 	"fmt"
 )
 
 func CollectionNameQnA(appid string) string {
-	return fmt.Sprintf("qna:%s", appid)
+	return fmt.Sprintf("%s:qna:%s", config.NAMESPACE, appid)
 }
 
 func CollectionNameFAQCategory(appid string) string {
-	return fmt.Sprintf("faq:%s:category", appid)
+	return fmt.Sprintf("%s:faq:%s:category", config.NAMESPACE, appid)
 }
 
 func CollectionNameFAQ(appid string) string {
-	return fmt.Sprintf("faq:%s", appid)
+	return fmt.Sprintf("%s:faq:%s", config.NAMESPACE, appid)
 }
 
 func CollectionNameNotice(appid string) string {
-	return fmt.Sprintf("notice:%s", appid)
+	return fmt.Sprintf("%s:notice:%s", config.NAMESPACE, appid)
 }
 
 func HttpErr(code int, err string) (int, map[string]interface{}) {
