@@ -4,6 +4,7 @@ import (
 	"../../src"
 	"../handlers"
 	"code.google.com/p/go-uuid/uuid"
+	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
 	"gopkg.in/mgo.v2"
@@ -52,7 +53,7 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 
 	var request string = config.DASHBOARD_WEB + "/qna/webhook?appid="
 	request += appid + "&messagetype=qna&body=" + qna.Body
-
+	fmt.Println(request)
 	_, Geterr := http.Get(request)
 	if Geterr != nil {
 		log.Println(Geterr)
@@ -99,6 +100,11 @@ func ReadListUserQnA(req *http.Request, params martini.Params, r render.Render, 
 		return
 	}
 
+	if qnas == nil {
+		r.JSON(http.StatusOK, map[string]interface{}{"return": bson.D{}})
+		return
+	}
+
 	r.JSON(http.StatusOK, map[string]interface{}{"return": qnas})
 }
 
@@ -119,6 +125,11 @@ func ReadListQnA(req *http.Request, r render.Render, db *mgo.Database) {
 	var qnas []QnA
 	if err := db.C(CollectionName).Find(bson.M{}).Sort("-time").All(&qnas); err != nil {
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
+		return
+	}
+
+	if qnas == nil {
+		r.JSON(http.StatusOK, map[string]interface{}{"return": bson.D{}})
 		return
 	}
 

@@ -41,6 +41,7 @@ func CreateNotice(req *http.Request, params martini.Params, notice Notice, r ren
 	// 	}
 	// }
 
+	//list가 nil이면 empty list 반환
 	if err := db.C(CollectionName).Insert(notice); err != nil {
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
@@ -55,6 +56,7 @@ func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 		return
 	}
 	colQuerier := bson.M{}
+	//읽기여부 true로 바꿔준다.
 	change := bson.M{"$set": bson.M{"reception": true}}
 	CollectionName := handlers.CollectionNameNotice(appid)
 	if _, err := db.C(CollectionName).UpdateAll(colQuerier, change); err != nil {
@@ -96,6 +98,11 @@ func ReadListNotice(req *http.Request, r render.Render, db *mgo.Database) {
 
 	// pipe := db.C(CollectionName).Pipe(expressions)
 	// iter := pipe.All(expressions)
+
+	if notices == nil {
+		r.JSON(http.StatusOK, map[string]interface{}{"return": bson.D{}})
+		return
+	}
 
 	r.JSON(http.StatusOK, map[string]interface{}{"return": notices})
 }

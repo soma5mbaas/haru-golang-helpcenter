@@ -62,7 +62,10 @@ func ReadListCategoryFaq(req *http.Request, params martini.Params, r render.Rend
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
-
+	if len(faqs) == 0 {
+		r.JSON(http.StatusOK, map[string]interface{}{"return": bson.D{}})
+		return
+	}
 	r.JSON(http.StatusOK, map[string]interface{}{"return": faqs})
 }
 
@@ -80,7 +83,10 @@ func ReadListFaq(req *http.Request, r render.Render, db *mgo.Database) {
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
-
+	if len(faqs) == 0 {
+		r.JSON(http.StatusOK, map[string]interface{}{"return": bson.D{}})
+		return
+	}
 	r.JSON(http.StatusOK, map[string]interface{}{"return": faqs})
 }
 
