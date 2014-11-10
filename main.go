@@ -72,6 +72,7 @@ func main() {
 
 	m.Group("/email", func(r martini.Router) {
 		r.Post("/send", binding.Json(controllers.Email{}), controllers.SendEmail)
+		r.Post("/export", binding.Json(controllers.MongoExport{}), controllers.ExportEmail)
 	})
 
 	m.Run()
