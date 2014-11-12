@@ -26,7 +26,7 @@ func InitDB() martini.Handler {
 
 	return func(c martini.Context) {
 		s := session.Clone()
-		c.Map(s.DB("haru"))
+		c.Map(s.DB(config.NAMESPACE + "haru"))
 
 		defer s.Close()
 		c.Next()
