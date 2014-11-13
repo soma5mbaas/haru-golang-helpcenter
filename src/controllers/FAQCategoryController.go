@@ -13,9 +13,9 @@ import (
 )
 
 type FaqCategory struct {
-	Id       string `bson:"_id,omitempty"`   // UUID
-	Category string `bson:"category"`        // Category
-	Time     int64  `bson:"time,omitempty" ` // 시간
+	Id       string `bson:"_id,omitempty" json:"_id"`   // UUID
+	Category string `bson:"category" json:"category"`   // Category
+	Time     int64  `bson:"time,omitempty" json:"time"` // 시간
 }
 
 func CreateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory, r render.Render, db *mgo.Database, f *log.Logger) {

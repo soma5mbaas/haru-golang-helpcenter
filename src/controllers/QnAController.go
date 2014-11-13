@@ -15,14 +15,14 @@ import (
 )
 
 type QnA struct {
-	Id           string `bson:"_id,omitempty"`        // UUID
-	EmailAddress string `bson:"emailaddress"`         // Email
-	Body         string `bson:"body" `                // 본문
-	Category     string `bson:"category"`             // Category
-	Time         int64  `bson:"time" `                // 시간
-	Reception    bool   `bson:"reception,omitempty" ` // 읽기여부
-	Comment      string `bson:"comment" `             // Comment
-	CommentTime  int64  `bson:"commenttime" `         // Comment 단 시간
+	Id           string `bson:"_id,omitempty" json:"_id"`             // UUID
+	EmailAddress string `bson:"emailaddress" json:"emailaddress"`     // Email
+	Body         string `bson:"body" json:"body"`                     // 본문
+	Category     string `bson:"category" json:"category"`             // Category
+	Time         int64  `bson:"time" json:"time"`                     // 시간
+	Reception    bool   `bson:"reception,omitempty" json:"reception"` // 읽기여부
+	Comment      string `bson:"comment" json:"comment"`               // Comment
+	CommentTime  int64  `bson:"commenttime" json:"commenttime"`       // Comment 단 시간
 }
 type Comment struct {
 	Content string `bson:"content" ` // Comment

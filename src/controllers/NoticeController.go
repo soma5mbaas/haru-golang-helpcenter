@@ -13,12 +13,12 @@ import (
 )
 
 type Notice struct {
-	Id        string `bson:"_id,omitempty"`            // UUID
-	Title     string `bson:"title" binding:"required"` // 제목
-	Body      string `bson:"body" binding:"required"`  // 본문
-	Time      int64  `bson:"time,omitempty" `          // 시간
-	Reception bool   `bson:"reception,omitempty" `     // 읽기여부
-	URL       string `bson:"url,omitempty" `           // Image URL
+	Id        string `bson:"_id,omitempty" json:"_id"`              // UUID
+	Title     string `bson:"title" binding:"required" json:"title"` // 제목
+	Body      string `bson:"body" binding:"required" json:"body"`   // 본문
+	Time      int64  `bson:"time,omitempty" json:"time"`            // 시간
+	Reception bool   `bson:"reception,omitempty" json:"reception"`  // 읽기여부
+	URL       string `bson:"url,omitempty" json:"url"`              // Image URL
 }
 
 func CreateNotice(req *http.Request, params martini.Params, notice Notice, r render.Render, db *mgo.Database, f *log.Logger) {

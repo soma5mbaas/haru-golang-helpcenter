@@ -13,12 +13,12 @@ import (
 )
 
 type Faq struct {
-	Id       string `bson:"_id,omitempty"`   // UUID
-	Title    string `bson:"title" `          // 제목
-	Body     string `bson:"body" `           // 본문
-	Category string `bson:"category"`        // Category
-	Platform string `bson:"platform"`        // Platform
-	Time     int64  `bson:"time,omitempty" ` // 시간
+	Id       string `bson:"_id,omitempty" json:"_id"`   // UUID
+	Title    string `bson:"title" json:"title"`         // 제목
+	Body     string `bson:"body" json:"body"`           // 본문
+	Category string `bson:"category" json:"category"`   // Category
+	Platform string `bson:"platform" json:"platform"`   // Platform
+	Time     int64  `bson:"time,omitempty" json:"time"` // 시간
 }
 
 func CreateFaq(req *http.Request, params martini.Params, fa Faq, r render.Render, db *mgo.Database, f *log.Logger) {
