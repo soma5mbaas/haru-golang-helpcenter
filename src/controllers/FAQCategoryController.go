@@ -88,6 +88,25 @@ func ReadIdFaqCategory(req *http.Request, params martini.Params, r render.Render
 	r.JSON(http.StatusOK, fa)
 }
 
+func CountFaqCategory(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
+
+	appid := req.Header.Get("Application-Id")
+	if appid == "" {
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
+		return
+	}
+
+	var faqs []FaqCategory
+	rawId := params["id"]
+	CollectionName := handlers.CollectionNameFAQCategory(appid)
+	err := db.C(CollectionName).Find(bson.M{"category": rawId}).All(&faqs)
+	if err != nil {
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
+		return
+	}
+	r.JSON(http.StatusOK, map[string]interface{}{"return": len(faqs)})
+}
+
 func UpdateFaqCategory(req *http.Request, params martini.Params, fa FaqCategory, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
