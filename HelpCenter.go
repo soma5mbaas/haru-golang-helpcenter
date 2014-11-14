@@ -46,6 +46,7 @@ func main() {
 	m.Group("/faq/category", func(r martini.Router) {
 		r.Get("/list", controllers.ReadListFaqCategory)
 		r.Get("/:id", controllers.ReadIdFaqCategory)
+		r.Get("/count/:id", controllers.CountFaqCategory)
 		r.Post("/add", binding.Json(controllers.FaqCategory{}), controllers.CreateFaqCategory)
 		r.Put("/:id", binding.Json(controllers.FaqCategory{}), controllers.UpdateFaqCategory)
 		r.Delete("/:id", binding.Json(controllers.FaqCategory{}), controllers.DeleteFaqCategory)

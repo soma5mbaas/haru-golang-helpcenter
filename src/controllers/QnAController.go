@@ -18,7 +18,6 @@ type QnA struct {
 	Id           string `bson:"_id,omitempty" json:"_id"`             // UUID
 	EmailAddress string `bson:"emailaddress" json:"emailaddress"`     // Email
 	Body         string `bson:"body" json:"body"`                     // 본문
-	Category     string `bson:"category" json:"category"`             // Category
 	Time         int64  `bson:"time" json:"time"`                     // 시간
 	Reception    bool   `bson:"reception,omitempty" json:"reception"` // 읽기여부
 	Comment      string `bson:"comment" json:"comment"`               // Comment
