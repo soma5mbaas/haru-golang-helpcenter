@@ -35,7 +35,7 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	m.Group("/notice", func(r martini.Router) {
+	m.Group("/1/notice", func(r martini.Router) {
 		r.Get("/list", controllers.ReadListNotice)
 		r.Get("/:id", controllers.ReadIdNotice)
 		r.Post("/add", binding.Json(controllers.Notice{}), controllers.CreateNotice)
@@ -43,7 +43,7 @@ func main() {
 		r.Delete("/:id", binding.Json(controllers.Notice{}), controllers.DeleteNotice)
 	})
 
-	m.Group("/faq/category", func(r martini.Router) {
+	m.Group("/1/faq/category", func(r martini.Router) {
 		r.Get("/list", controllers.ReadListFaqCategory)
 		r.Get("/:id", controllers.ReadIdFaqCategory)
 		r.Get("/count/:id", controllers.CountFaqCategory)
@@ -52,7 +52,7 @@ func main() {
 		r.Delete("/:id", binding.Json(controllers.FaqCategory{}), controllers.DeleteFaqCategory)
 	})
 
-	m.Group("/faq", func(r martini.Router) {
+	m.Group("/1/faq", func(r martini.Router) {
 		r.Get("/list", controllers.ReadListFaq)
 		r.Get("/list/:category", controllers.ReadListCategoryFaq)
 		r.Get("/:id", controllers.ReadIdFaq)
@@ -61,7 +61,7 @@ func main() {
 		r.Delete("/:id", binding.Json(controllers.Faq{}), controllers.DeleteFaq)
 	})
 
-	m.Group("/qna", func(r martini.Router) {
+	m.Group("/1/qna", func(r martini.Router) {
 		r.Get("/list", controllers.ReadListQnA)
 		r.Get("/list/:id", controllers.ReadListUserQnA)
 		r.Get("/:id", controllers.ReadIdQnA)
@@ -71,7 +71,7 @@ func main() {
 		r.Delete("/:id", binding.Json(controllers.QnA{}), controllers.DeleteQnA)
 	})
 
-	m.Group("/email", func(r martini.Router) {
+	m.Group("/1/email", func(r martini.Router) {
 		r.Post("/send", binding.Json(controllers.Email{}), controllers.SendEmail)
 		r.Post("/export", binding.Json(controllers.MongoExport{}), controllers.ExportEmail)
 	})
