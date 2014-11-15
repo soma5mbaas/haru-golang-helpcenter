@@ -1,10 +1,12 @@
 package controllers
 
 import (
+	"../../src"
 	"../handlers"
 	"encoding/json"
 	"github.com/martini-contrib/render"
 	"github.com/streadway/amqp"
+	"gopkg.in/mgo.v2"
 	"net/http"
 )
 
@@ -48,7 +50,7 @@ type MongoExport struct {
 	Collection string `json:"collection"` // DB.Collection
 }
 
-func ExportEmail(req *http.Request, mail MongoExport, r render.Render, ch *amqp.Channel) {
+func ExportEmail(req *http.Request, mail MongoExport, r render.Render, ch *amqp.Channel, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")
 	if appid == "" {
 		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
@@ -56,15 +58,21 @@ func ExportEmail(req *http.Request, mail MongoExport, r render.Render, ch *amqp.
 	}
 
 	mail.Collection = handlers.CollectionTable(mail.Collection, appid)
+
+	if count, err := db.C(mail.Collection).Find(nil).Count(); err != nil || count == 0 {
+		r.JSON(http.StatusNotFound, map[string]interface{}{"Export": "Not Found Collection"})
+		return
+	}
+
 	msg, _ := json.Marshal(mail)
 
 	q, _ := ch.QueueDeclare(
-		"export", // name
-		true,     // durable
-		false,    // delete when usused
-		false,    // exclusive
-		false,    // no-wait
-		nil,      // arguments
+		config.NAMESPACE+":"+"export", // name
+		true,  // durable
+		false, // delete when usused
+		false, // exclusive
+		false, // no-wait
+		nil,   // arguments
 	)
 
 	err := ch.Publish( //RabbitMQ에 큐가 생성되어있어야 들어감.
