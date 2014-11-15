@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"../handlers"
 	"encoding/json"
 	"github.com/martini-contrib/render"
 	"github.com/streadway/amqp"
@@ -48,6 +49,13 @@ type MongoExport struct {
 }
 
 func ExportEmail(req *http.Request, mail MongoExport, r render.Render, ch *amqp.Channel) {
+	appid := req.Header.Get("Application-Id")
+	if appid == "" {
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
+		return
+	}
+
+	mail.Collection = handlers.CollectionTable(mail.Collection, appid)
 	msg, _ := json.Marshal(mail)
 
 	q, _ := ch.QueueDeclare(
