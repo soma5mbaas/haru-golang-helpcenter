@@ -4,7 +4,6 @@ import (
 	"../../src"
 	"../handlers"
 	"code.google.com/p/go-uuid/uuid"
-	"fmt"
 	"github.com/go-martini/martini"
 	"github.com/martini-contrib/render"
 	"gopkg.in/mgo.v2"
@@ -50,9 +49,9 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 	// 	}
 	// }
 
+	//web notify
 	var request string = config.DASHBOARD_WEB + "/qna/webhook?appid="
 	request += appid + "&messagetype=qna&body=" + qna.Body
-	fmt.Println(request)
 	_, Geterr := http.Get(request)
 	if Geterr != nil {
 		log.Println(Geterr)
@@ -153,6 +152,27 @@ func ReadIdQnA(req *http.Request, params martini.Params, r render.Render, db *mg
 
 	r.JSON(http.StatusOK, qna)
 }
+
+//////////////
+func ReadCountQnA(req *http.Request, params martini.Params, r render.Render, db *mgo.Database) {
+
+	appid := req.Header.Get("Application-Id")
+	if appid == "" {
+		r.JSON(handlers.HttpErr(http.StatusNotFound, "insert to Application-Id"))
+		return
+	}
+
+	var qnas []QnA
+	CollectionName := handlers.CollectionNameQnA(appid)
+	if err := db.C(CollectionName).Find(nil).All(&qnas); err != nil {
+		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
+		return
+	}
+
+	r.JSON(http.StatusOK, map[string]interface{}{"return": len(qnas)})
+}
+
+//////////
 
 func UpdateQnA(req *http.Request, params martini.Params, qna QnA, r render.Render, db *mgo.Database) {
 	appid := req.Header.Get("Application-Id")

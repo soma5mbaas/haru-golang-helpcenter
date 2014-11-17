@@ -62,6 +62,7 @@ func main() {
 	})
 
 	m.Group("/1/qna", func(r martini.Router) {
+		r.Get("/count", controllers.ReadCountQnA)
 		r.Get("/list", controllers.ReadListQnA)
 		r.Get("/list/:id", controllers.ReadListUserQnA)
 		r.Get("/:id", controllers.ReadIdQnA)
