@@ -53,7 +53,7 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 
 	//web notify
 	var request string = config.DASHBOARD_WEB + "/qna/webhook?appid="
-	request += appid + "&"
+	request += appid + "&messagetype=qna&"
 	v := url.Values{}
 	v.Add("body", qna.Body)
 	request += v.Encode()
