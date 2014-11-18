@@ -10,6 +10,8 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"net/http"
+
+	"net/url"
 	"time"
 )
 
@@ -52,6 +54,9 @@ func CreateQnA(req *http.Request, params martini.Params, qna QnA, r render.Rende
 	//web notify
 	var request string = config.DASHBOARD_WEB + "/qna/webhook?appid="
 	request += appid + "&messagetype=qna&body=" + qna.Body
+	v := url.Values{}
+	v.Add("body", qna.Body)
+	request += v.Encode()
 	_, Geterr := http.Get(request)
 	if Geterr != nil {
 		log.Println(Geterr)
@@ -164,7 +169,7 @@ func ReadCountQnA(req *http.Request, params martini.Params, r render.Render, db 
 
 	var qnas []QnA
 	CollectionName := handlers.CollectionNameQnA(appid)
-	if err := db.C(CollectionName).Find(nil).All(&qnas); err != nil {
+	if err := db.C(CollectionName).Find(nil).All(&qnas); err != nil { //현재 Month로 카운트 하는거 나중에 구현하기!!
 		r.JSON(handlers.HttpErr(http.StatusNotFound, err.Error()))
 		return
 	}
